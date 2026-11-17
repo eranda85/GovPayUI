@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Digital Payment Platform</title>
+
+    <link href="assets/govpay.css" rel="stylesheet">
+    <link href="assets/select2.min.css" rel="stylesheet">
+    <link href="assets/jquery-ui.min.css" rel="stylesheet">
+
+    <script src="assets/jquery-3.7.1.min.js"></script>
+    <script src="assets/jquery-ui.min.js"></script>
+    <script src="assets/select2.min.js"></script>
+
+    <style>
+        /* Hide page content until the initial 5-second loader finishes */
+        body.page-loading .govpay-home,
+        body.page-loading .govpay-footer {
+            visibility: hidden;
+        }
+
+        body.page-loaded .govpay-home,
+        body.page-loaded .govpay-footer {
+            animation: pageFadeIn 0.3s ease-out;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Solid background for the initial loader */
+        body.page-loading .ajax-loader-overlay {
+            background: #ffffff;
+        }
+    </style>
+
+</head>
+<body class="page-loading">
+
+    <!-- OVERLAY LOADER (shown for 5 seconds on page load) -->
+    <div id="ajaxLoader" class="ajax-loader-overlay show">
+        <div class="ajax-loader-content">
+            <div class="spinner"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+<form action="https://uatlpopp.lankapay.net:7782/OfflineBiller/Index" id="formControl" method="post"><input name="__RequestVerificationToken" type="hidden" value="ucW1PNUgBOq-Ztyx8m3UIu6O5UNoeoB-f23LBwcjUS5RDkUPox-VhSlD5aaXs5LJfDXeww0PLc_U4FLtX9hWdYNOBITL6zvR27i3W9f3pkQ1">    <div class="govpay-home">
+
+        <!-- LOGO -->
+        <div class="top-brand-bar">
+
+            <div class="brand-left">
+                <img src="assets/GovernmentLogo2.png" alt="GovPay Logo">
+            </div>
+
+            <div class="brand-right">
+
+                <img src="assets/6000_testbabnk.png" alt="Bank Logo">
+            </div>
+
+        </div>
+
+        <!-- HERO BANNER -->
+
+        <section class="hero-banner">
+
+            <div class="hero-content">
+
+                <h1>
+                    Pay Government Services
+                    <span>Easily &amp; Securely</span>
+                </h1>
+
+                <p>
+                    A simple and secure way to make your
+                    government payments online.
+                </p>
+                <div class="hero-features">
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">🛡️</div>
+
+                        <div class="feature-text">
+                            <div class="feature-title">Secure</div>
+                            <div class="feature-desc">
+                                Your payments are protected
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">⚡</div>
+
+                        <div class="feature-text">
+                            <div class="feature-title">Fast</div>
+                            <div class="feature-desc">
+                                Quick and hassle-free
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">✔️</div>
+
+                        <div class="feature-text">
+                            <div class="feature-title">Convenient</div>
+                            <div class="feature-desc">
+                                Pay anytime, anywhere
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+                <img src="assets/hero-banner.png" alt="GovPay Logo">
+            </div>
+
+        </section>
+
+        <!-- SERVICES -->
+        <!-- SERVICES / SECTORS -->
+        <section class="services-section">
+
+            <div class="section-header">
+                <h2>What would you like to pay for?</h2>
+            </div>
+
+            <div id="servicesLoader" class="services-loader" style="display: none;">
+                Loading services...
+            </div>
+
+            <div id="servicesGrid" class="services-grid"><div class="service-card" data-sectorid="-1" data-sectorname="Traffic Fine"><div class="service-icon blue"><img src="assets/-1.png" alt="Traffic Fine"></div><h4>Traffic Fine</h4></div><div class="service-card active" data-sectorid="0" data-sectorname="All Organization"><div class="service-icon blue"><img src="assets/default.png" alt="All Organization"></div><h4>All Organization</h4></div><div class="service-card" data-sectorid="1" data-sectorname="District &amp; Divisional Secretariats"><div class="service-icon blue"><img src="assets/1.png" alt="District &amp; Divisional Secretariats"></div><h4>District &amp; Divisional Secretariats</h4></div><div class="service-card" data-sectorid="3" data-sectorname="Foreign Affairs and Tourism"><div class="service-icon blue"><img src="assets/3.png" alt="Foreign Affairs and Tourism"></div><h4>Foreign Affairs and Tourism</h4></div><div class="service-card" data-sectorid="4" data-sectorname="Ministries &amp; Government Departments"><div class="service-icon blue"><img src="assets/4.png" alt="Ministries &amp; Government Departments"></div><h4>Ministries &amp; Government Departments</h4></div><div class="service-card" data-sectorid="5" data-sectorname="Hospitals and Healthcare Institutions"><div class="service-icon blue"><img src="assets/5.png" alt="Hospitals and Healthcare Institutions"></div><h4>Hospitals and Healthcare Institutions</h4></div><div class="service-card" data-sectorid="6" data-sectorname="Judiciary, Law &amp; Order, Military &amp; Defense Institutions"><div class="service-icon blue"><img src="assets/6.png" alt="Judiciary, Law &amp; Order, Military &amp; Defense Institutions"></div><h4>Judiciary, Law &amp; Order, Military &amp; Defense Institutions</h4></div><div class="service-card" data-sectorid="9" data-sectorname="Municipal, Urban Councils &amp; Pradeshiya Sabhas"><div class="service-icon blue"><img src="assets/9.png" alt="Municipal, Urban Councils &amp; Pradeshiya Sabhas"></div><h4>Municipal, Urban Councils &amp; Pradeshiya Sabhas</h4></div><div class="service-card" data-sectorid="12" data-sectorname="Schools, Universities, and Other Training Institutions"><div class="service-icon blue"><img src="assets/12.png" alt="Schools, Universities, and Other Training Institutions"></div><h4>Schools, Universities, and Other Training Institutions</h4></div><div class="service-card" data-sectorid="13" data-sectorname="State authorities, Councils, Commissions &amp; Statutory Boards"><div class="service-icon blue"><img src="assets/13.png" alt="State authorities, Councils, Commissions &amp; Statutory Boards"></div><h4>State authorities, Councils, Commissions &amp; Statutory Boards</h4></div><div class="service-card" data-sectorid="16" data-sectorname="State-Owned Enterprises (SOEs)"><div class="service-icon blue"><img src="assets/16.png" alt="State-Owned Enterprises (SOEs)"></div><h4>State-Owned Enterprises (SOEs)</h4></div><div class="service-card" data-sectorid="19" data-sectorname="Other Government Organizations &amp; Services"><div class="service-icon blue"><img src="assets/19.png" alt="Other Government Organizations &amp; Services"></div><h4>Other Government Organizations &amp; Services</h4></div><div class="service-card" data-sectorid="20" data-sectorname="Trade National Single Window (TNSW)"><div class="service-icon blue"><img src="assets/20.png" alt="Trade National Single Window (TNSW)"></div><h4>Trade National Single Window (TNSW)</h4></div></div>
+
+        </section>
+
+        <!-- Selected values posted to controller -->
+        <input type="hidden" id="hdnSectorId" name="CategoryId" value="0">
+        <input type="hidden" id="hdnServiceId" name="serviceID" value="">
+        <input type="hidden" id="hdnServiceDescription" name="ServiceDesc" value="">
+        <input type="hidden" id="hdnIsTrafficFine" name="IsTrafficFine" value="0">
+        <input type="hidden" id="hdnSelectedAgency">
+
+        <input type="hidden" id="hdnSelectedPoliceStationId">
+
+        <section class="filter-section" id="paymentSelectionSection">
+
+            <!-- NORMAL PAYMENT FLOW -->
+            <div id="normalPaymentFields">
+
+                <div class="filter-grid">
+
+                    <div class="filter-item">
+
+                        <label for="ddlOrganization">
+                            <span class="lang-si">ආයතන නාමය</span><br>
+                            <span class="lang-ta">நிறுவனத்தின் பெயர் </span><br>
+                            <span class="lang-en">Organization Name </span>
+                        </label>
+
+                        <select id="ddlOrganization" name="subInstId" class="gov-select"><option value="">Select Organization</option><option value="001">Dehiwala-Mount Lavinia &amp; Municipal Council</option><option value="002">Divisional Secretariat Thimbirigasyaya</option><option value="003">Divisional Secretariat of Ratmalana</option><option value="004">Divisional Secretariat of Kegalle</option><option value="005">Sri Lanka Survey Department</option><option value="006">SLPA - RPU</option><option value="007">Sri Lanka Atomic Energy Board</option><option value="008">Municipal Council Gampaha</option><option value="009">Pradeshiya Saba - Rambukkana</option><option value="010">Vocational Training Authority</option><option value="011">Divisional Secretariat of Jaffna</option><option value="0115515">jhon</option><option value="012">Divisional Secretariat of Mahara</option><option value="013">Telecommunication Regularity Commission</option><option value="014">University of Moratuwa</option><option value="015">Department of Ayurveda</option><option value="018">LankaPay Private Limited</option><option value="019">Commercial Bank Services</option><option value="020">Horana Pradesheeya Sabha</option><option value="021">LankaPay Test Organization 1</option><option value="022">Excise Department</option><option value="023">National Cancer Institute Apeksha Development Committee</option><option value="025">National Gem and Jewellery Authority</option><option value="026">Magahituma Development Authority</option><option value="030">Sri Lanka Police</option><option value="031">Kothalawala Defence University</option><option value="033">University of Kelaniya</option><option value="034">Test Hospital 1</option><option value="035">Panadura Pradeshiya Sabha</option><option value="036">Department of Motor Traffic</option><option value="037">LankaPay CCAPS</option><option value="038">Sri Lank Foreign Employment Bereau</option><option value="039">Sri Lanka Test Organization</option><option value="040">Divisional Secretariat Bandaragama</option><option value="041">National Single Window (Seperate)</option><option value="042">Test Organization Plus</option><option value="043">District Secretariat Kilinochchi</option><option value="044">National Single Window</option><option value="045">Royal College Colombo</option><option value="046">Department of Commerce</option><option value="047">Richmond College - Galle</option><option value="048">Coconut Development Authority</option><option value="049">Sri Lanka Post</option><option value="050">Sri Lanka Ports Authority</option><option value="051">St. Anthony's College Kandy</option><option value="052">Sri Lanka Tea Board</option><option value="053">Coconut Research Institute of Sri Lanka</option><option value="054">National Plant Quarantine Services (NPQS)</option><option value="055">Ministry of Agriculture and Food Control Administration Unit (FCAU)</option><option value="097">chintha liyanage</option><option value="123">vbfgbfg</option><option value="211">Ministry of Finance</option><option value="2222">fbfbfb</option><option value="242452355">VVXVXBVD</option><option value="32">Anuradhapura Divisional Secretariat</option><option value="4543">czxczc</option><option value="45645">vhnvj</option><option value="456767">effef</option><option value="5646764">jegoher</option><option value="68888888865111111111135">rgshf</option><option value="890">test</option><option value="8945">chirani pudamni</option><option value="978654">jhud</option></select>
+
+                        <div id="organizationLoader" class="field-loader" style="display: none;">
+                            Loading organizations...
+                        </div>
+
+                    </div>
+
+                    <div class="filter-item">
+
+                        <label for="ddlService">
+                            <span class="lang-si">සේවා වර්ගය</span><br>
+                            <span class="lang-ta">சேவை வகை </span><br>
+                            <span class="lang-en">Service Type </span>
+                        </label>
+
+                        <select id="ddlService" name="ddlServiceType" class="gov-select" disabled=""><option value="">Select Service</option></select>
+
+                        <div id="serviceLoader" class="field-loader" style="display:none;">
+                            Loading services...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TRAFFIC FINE FLOW -->
+            <div id="trafficFineFields" style="display:none;">
+
+                <div class="special-section-title">
+                    Traffic Fine Details
+                </div>
+
+                <div id="postOfficePanel" class="post-office-panel" style="display:none;">
+
+                    <label>Post Office</label>
+
+                    <div id="lblPostOfficeName" class="post-office-value">
+                    </div>
+
+                </div>
+
+                <div class="filter-grid">
+
+                    <div class="filter-item">
+
+                        <label for="ddlPoliceStation">
+                            <span class="lang-si">පොලිස් ස්ථානය</span><br>
+                            <span class="lang-ta">பொலிஸ் நிலையம் </span><br>
+                            <span class="lang-en">Police Station </span>
+                        </label>
+
+                        <select id="ddlPoliceStation" name="ddlPoliceStation" class="gov-select"><option value="">Select Police Station</option></select>
+                        <input type="hidden" id="hdnPoliceStationName" name="PoliceStationName" value="">
+
+                        <div id="policeStationLoader" class="field-loader" style="display:none;">
+                            Loading police stations...
+                        </div>
+
+                    </div>
+
+                    <div class="filter-item">
+
+                        <label for="ddlPolicePhone">
+                            <span class="lang-si">පොලිස් නිලධාරියාගේ ජංගම දුරකථන අංකය</span><br>
+                            <span class="lang-ta">பொலிஸ் அதிகாரியின் தொலைபேசி இல </span><br>
+                            <span class="lang-en">Police Officer's Mobile Number</span>
+                        </label>
+
+                        <select id="ddlPolicePhone" name="ddlPolicePhone" class="gov-select" disabled=""><option value="">Select Police Mobile Number</option></select>
+                        <input type="hidden" id="hdnPolicePhone" name="PolicePhoneName" value="">
+
+                        <div id="policePhoneLoader" class="field-loader" style="display:none;">
+                            Loading mobile numbers...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="selectionMessage" class="selection-message" style="display:none;"></div>
+
+            <div class="action-section">
+
+                <button type="button" id="btnCancel" class="btn-cancel">
+                    Cancel
+                </button>
+
+                <button type="submit" id="btnContinue" class="btn-continue" disabled="">Continue</button>
+
+            </div>
+
+        </section>
+
+
+    </div>
+</form>
+    <script>
+    $(document).ready(function () {
+
+        $(document).ajaxStart(function () {
+            $("#ajaxLoader").addClass("show");
+        });
+
+        $(document).ajaxStop(function () {
+            // keep the overlay up while the initial 5-second load is running
+            if (!isInitialLoading) {
+                $("#ajaxLoader").removeClass("show");
+            }
+        });
+
+        /*
+         * INITIAL PAGE LOADER
+         * Show the overlay for 5 seconds, then reveal the content.
+         */
+        var INITIAL_LOAD_DELAY = 5000;
+        var isInitialLoading = true;
+
+        setTimeout(function () {
+            isInitialLoading = false;
+            $("#ajaxLoader").removeClass("show").css("display", "none");
+            $("body").removeClass("page-loading").addClass("page-loaded");
+        }, INITIAL_LOAD_DELAY);
+
+        // Keep the original (saved) organization list as an offline fallback
+        var staticOrganizationOptions = $("#ddlOrganization").html();
+
+        var TRAFFIC_FINE_SERVICE_ID = "-1";
+
+        var urls = {
+            categories: '/OfflineBiller/OfflineBillerCategoryAsync',
+            agencies: '/OfflineBiller/GetAgency',
+            services: '/OfflineBiller/GetService',
+            policeStations: '/OfflineBiller/GetPoliceStation',
+            policePhones: '/OfflineBiller/GetPhoneDetailsByStationID'
+        };
+
+        initializeSelect2();
+        resetCompletePage();
+        loadCategories();
+
+        function initializeSelect2() {
+
+            $("#ddlOrganization").select2({
+                placeholder: "Select Organization",
+                allowClear: true,
+                width: "100%"
+            });
+
+            $("#ddlService").select2({
+                placeholder: "Select Service",
+                allowClear: true,
+                width: "100%"
+            });
+
+            $("#ddlPoliceStation").select2({
+                placeholder: "Select Police Station",
+                allowClear: true,
+                width: "100%"
+            });
+
+            $("#ddlPolicePhone").select2({
+                placeholder: "Select Police Mobile Number",
+                allowClear: true,
+                width: "100%"
+            });
+
+            var selectedAgency = $("#hdnSelectedAgency").val();
+            var selectedPoliceStationId = $("#hdnSelectedPoliceStationId").val();
+
+            if (selectedAgency) {
+
+                $(".services-section").hide();
+
+            }
+        }
+
+        /*
+         * LOAD CATEGORY / SECTOR CARDS
+         */
+        function loadCategories() {
+
+            $("#servicesLoader").show();
+
+            $.ajax({
+                url: urls.categories,
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                success: function (response) {
+
+                    $("#servicesLoader").hide();
+
+                    //createAllServicesCard();
+
+                    if (!response || response.length === 0) {
+                        showMessage(
+                            "No service categories are currently available.",
+                            "warning"
+                        );
+                        return;
+                    }
+
+                    $("#servicesGrid").empty();
+
+                    $.each(response, function (index, item) {
+
+                        /*
+                         * These fallback property names allow different
+                         * API naming styles. Keep the property names that
+                         * match your OBMItem model.
+                         */
+                        var categoryId =
+                            item.CategoryID ||
+                            item.CategoryId ||
+                            item.ID ||
+                            item.Id ||
+                            item.id ||
+                            "0";
+
+                        var categoryName =
+                            item.CategoryName ||
+                            item.CategoryDesc ||
+                            item.Description ||
+                            item.Name ||
+                            item.English ||
+                            "Service";
+
+                        var iconPath =
+                            item.IconPath ||
+                            item.ImagePath ||
+                            item.Image ||
+                            item.Icon ||
+                            "";
+
+                        createServiceCard(
+                            categoryId,
+                            categoryName,
+                            iconPath,
+                            false
+                        );
+                    });
+
+                    loadAgencies(0);
+                },
+                error: function () {
+
+                    $("#servicesLoader").hide();
+
+                    /*
+                     * API not reachable (e.g. page opened locally):
+                     * keep the saved category cards and load the
+                     * saved organization list.
+                     */
+                    loadAgencies(0);
+                }
+            });
+        }
+
+        function createAllServicesCard() {
+
+            var allServicesImage =
+                'assets/all-services.png';
+
+            createServiceCard(
+                "0",
+                "All Services",
+                allServicesImage,
+                true
+            );
+        }
+
+        function createServiceCard(
+            categoryId,
+            categoryName,
+            iconPath,
+            isAllServices
+        )
+        {
+
+            var resolvedIcon = resolveIconPath(iconPath);
+
+            var $card = $("<div/>", {
+                "class": "service-card",
+                "data-sectorid": categoryId,
+                "data-sectorname": categoryName
+            });
+
+            if (parseInt(categoryId) === 0) {
+                $card.addClass("active");
+            }
+
+            var $iconContainer = $("<div/>", {
+                "class": "service-icon blue"
+            });
+
+            var $image = $("<img/>", {
+                "src": resolvedIcon,
+                "alt": categoryName
+            });
+
+            /*
+             * If the returned icon path is invalid,
+             * use the default category icon.
+             */
+            $image.on("error", function () {
+                $(this).attr(
+                    "src",
+                    'assets/default.png'
+                );
+            });
+
+            var $title = $("<h4/>").text(categoryName);
+
+            $iconContainer.append($image);
+            $card.append($iconContainer);
+            $card.append($title);
+
+            $("#servicesGrid").append($card);
+        }
+
+        function resolveIconPath(iconPath) {
+
+            if (!iconPath) {
+                return 'assets/default.png';
+            }
+
+            /*
+             * Leave absolute and application-root paths unchanged.
+             */
+            if (
+                iconPath.indexOf("http://") === 0 ||
+                iconPath.indexOf("https://") === 0 ||
+                iconPath.indexOf("/") === 0
+            ) {
+                return iconPath;
+            }
+
+            /*
+             * If API returns only an image filename such as 1.png
+             */
+            return 'assets/' + iconPath;
+        }
+
+        /*
+         * CATEGORY CARD CLICK
+         */
+        $(document).on("click", ".service-card", function () {
+
+            // keep 0 value
+            var categoryId = $(this).data("sectorid");
+
+            $(".service-card").removeClass("active");
+            $(this).addClass("active");
+
+            $("#hdnSectorId").val(categoryId);
+
+            hideMessage();
+
+            // Traffic Fine Category
+            if (parseInt(categoryId) === -1) {
+
+                switchToTrafficFineFlow();
+
+                clearOrganization();
+                clearService();
+
+                loadPoliceStations();
+
+                scrollToPaymentSelection();
+
+                return;
+            }
+
+            // Normal Flow (including Category 0 = All Services)
+            switchToNormalFlow();
+
+            clearOrganization();
+            clearService();
+
+            loadAgencies(categoryId);
+
+            scrollToPaymentSelection();
+        });
+
+        /*
+         * Keyboard accessibility for cards
+         */
+        $(document).on("keydown", ".service-card", function (event) {
+
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                $(this).trigger("click");
+            }
+        });
+
+        /*
+         * LOAD ORGANIZATIONS BY CATEGORY
+         */
+        function loadAgencies(categoryId) {
+
+            clearOrganization();
+            clearService();
+
+            $("#ddlOrganization").prop("disabled", true);
+            $("#organizationLoader").show();
+            $("#btnContinue").prop("disabled", true);
+
+            $.ajax({
+                url: urls.agencies,
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: {
+                    CategoryId: categoryId
+                },
+                success: function (response) {
+
+                    var $organization = $("#ddlOrganization");
+
+                    $organization.empty().append(
+                        $("<option/>", {
+                            value: "",
+                            text: "Select Organization"
+                        })
+                    );
+
+                    if (response && response.Agencies && response.Agencies.length > 0) {
+
+                        $.each(response.Agencies, function (index, item) {
+
+                            $organization.append(
+                                $("<option/>", {
+                                    value: item.subInstID,
+                                    text: item.subInstDesc
+                                })
+                            );
+                        });
+
+                        $organization.prop("disabled", false);
+
+                        if (response.SelectedAgency) {
+
+                            $organization
+                                .val(response.SelectedAgency)
+                                .trigger("change");
+
+                            $(".services-section").hide();
+
+                            /*
+                             * Automatically load services
+                             * for the selected organization.
+                             */
+                            loadServices(response.SelectedAgency);
+
+                            if (response.IsTrafficFine) {
+
+                                switchToTrafficFineFlow();
+
+                                loadPoliceStations();
+                            }
+                            if (response.IsPostOffice) {
+
+                                $("#lblPostOfficeName")
+                                    .text(response.PostOfficeName);
+
+                                $("#postOfficePanel")
+                                    .show();
+                            }
+                            else {
+
+                                $("#postOfficePanel")
+                                    .hide();
+                            }
+                        }
+                    }
+                    else {
+
+                        showMessage(
+                            "No organizations are available for the selected service category.",
+                            "warning"
+                        );
+                    }
+
+                    $("#organizationLoader").hide();
+                },
+                error: function () {
+
+                    $("#organizationLoader").hide();
+
+                    // Offline fallback: use the saved organization list
+                    $("#ddlOrganization")
+                        .html(staticOrganizationOptions)
+                        .prop("disabled", false)
+                        .val(null)
+                        .trigger("change.select2");
+                }
+            });
+
+            var selectedAgency =
+                $("#hdnSelectedAgency").val();
+
+            if (selectedAgency) {
+
+                $("#ddlOrganization")
+                    .val(selectedAgency)
+                    .trigger("change");
+
+                $(".services-section").hide();
+            }
+        }
+
+        /*
+         * ORGANIZATION CHANGE
+         */
+        $("#ddlOrganization").on("change", function () {
+
+            var organizationId = $(this).val();
+
+            clearService();
+            hideMessage();
+
+            if (!organizationId) {
+                return;
+            }
+
+            loadServices(organizationId);
+        });
+
+        /*
+         * LOAD SERVICES BY ORGANIZATION
+         */
+        function loadServices(organizationId) {
+
+            var $service = $("#ddlService");
+
+            $service.prop("disabled", true);
+            $("#serviceLoader").show();
+            $("#btnContinue").prop("disabled", true);
+
+            $.ajax({
+                url: urls.services,
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: {
+                    InstId: organizationId
+                },
+                success: function (response) {
+
+                    $service.empty().append(
+                        $("<option/>", {
+                            value: "",
+                            text: "Select Service"
+                        })
+                    );
+
+                    if (response && response.length > 0) {
+
+                        $.each(response, function (index, item) {
+
+                            var $option = $("<option/>", {
+                                value: item.serviceID,
+                                text: item.serviceDesc
+                            });
+
+                            $option.attr(
+                                "data-service-description",
+                                item.serviceDesc || ""
+                            );
+
+                            $option.attr(
+                                "data-service-bank-id",
+                                item.serviceBankID || ""
+                            );
+
+                            $option.attr(
+                                "data-service-bank-account",
+                                item.serviceBankAcct || ""
+                            );
+
+                            $service.append($option);
+                        });
+
+                        $service.prop("disabled", false);
+
+                    } else {
+
+                        showMessage(
+                            "No services are available for the selected organization.",
+                            "warning"
+                        );
+                    }
+
+                    $service.val(null).trigger("change.select2");
+                    $("#serviceLoader").hide();
+                },
+                error: function () {
+
+                    $("#serviceLoader").hide();
+
+                    showMessage(
+                        "Unable to load services. Please try again.",
+                        "error"
+                    );
+                }
+            });
+        }
+
+        /*
+         * SERVICE CHANGE
+         */
+        $("#ddlService").on("change", function () {
+
+            var serviceId = String($(this).val() || "");
+
+            var serviceDescription = String(
+                $(this).find("option:selected").text() || ""
+            ).trim();
+
+            $("#hdnServiceId").val(serviceId);
+            $("#hdnServiceDescription").val(serviceDescription);
+
+            hideMessage();
+
+            if (!serviceId) {
+
+                $("#btnContinue").prop("disabled", true);
+                return;
+            }
+
+            if (isTrafficFineService(serviceId, serviceDescription)) {
+
+                switchToTrafficFineFlow();
+                loadPoliceStations();
+
+            } else {
+
+                switchToNormalFlow();
+                $("#btnContinue").prop("disabled", false);
+            }
+        });
+
+        function isTrafficFineService(
+            serviceId,
+            serviceDescription
+        ) {
+
+            /*
+             * Primary production check: exact service ID
+             */
+            if (
+                TRAFFIC_FINE_SERVICE_ID &&
+                String(serviceId) ===
+                String(TRAFFIC_FINE_SERVICE_ID)
+            ) {
+                return true;
+            }
+        }
+
+        /*
+         * SWITCH TO TRAFFIC FINE CONTROLS
+         */
+        function switchToTrafficFineFlow() {
+
+            $("#hdnIsTrafficFine").val("1");
+
+            /*
+             * Keep selected organization/service values in the hidden
+             * inputs, but hide the normal controls.
+             */
+            $("#normalPaymentFields").stop(true, true).slideUp(200);
+            $("#trafficFineFields").stop(true, true).slideDown(200);
+
+            clearPoliceStation();
+            clearPolicePhone();
+
+            $("#btnContinue").prop("disabled", true);
+        }
+
+        /*
+         * SWITCH BACK TO NORMAL CONTROLS
+         */
+        function switchToNormalFlow() {
+
+            $("#hdnIsTrafficFine").val("0");
+
+            $("#trafficFineFields").stop(true, true).hide();
+            $("#normalPaymentFields").stop(true, true).show();
+
+            clearPoliceStation();
+            clearPolicePhone();
+        }
+
+        /*
+         * LOAD POLICE STATIONS
+         */
+        function loadPoliceStations() {
+
+            var $station = $("#ddlPoliceStation");
+
+            clearPoliceStation();
+            clearPolicePhone();
+
+            $station.prop("disabled", true);
+            $("#policeStationLoader").show();
+
+            $.ajax({
+                url: urls.policeStations,
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                success: function (response) {
+
+                    $station.empty().append(
+                        $("<option/>", {
+                            value: "",
+                            text: "Select Police Station"
+                        })
+                    );
+
+                    if (response && response.length > 0) {
+
+                        $.each(response, function (index, item) {
+
+                            $station.append(
+                                $("<option/>", {
+                                    value: item.policeStationID,
+                                    text: item.policeStationDesc
+                                })
+                            );
+                        });
+
+                        $station.prop("disabled", false);
+
+                    } else {
+
+                        showMessage(
+                            "No police stations are currently available.",
+                            "warning"
+                        );
+                    }
+
+                    $station.val(null).trigger("change.select2");
+                    $("#policeStationLoader").hide();
+                },
+                error: function () {
+
+                    $("#policeStationLoader").hide();
+
+                    showMessage(
+                        "Unable to load police stations. Please try again.",
+                        "error"
+                    );
+                }
+            });
+
+            var selectedPoliceStation = $("#hdnSelectedPoliceStationId").val();
+
+            if (selectedPoliceStation) {
+
+                $("#ddlPoliceStation")
+                    .val(selectedPoliceStation)
+                    .trigger("change");
+            }
+        }
+
+        /*
+         * POLICE STATION CHANGE
+         */
+        $("#ddlPoliceStation").on("change", function () {
+
+            var stationId = $(this).val();
+
+            var stationName =
+                $("#ddlPoliceStation option:selected").text();
+            $("#hdnPoliceStationName").val(stationName);
+
+            clearPolicePhone();
+            hideMessage();
+
+            if (!stationId) {
+                $("#btnContinue").prop("disabled", true);
+                return;
+            }
+
+            loadPolicePhones(stationId);
+        });
+
+        /*
+         * LOAD POLICE PHONE NUMBERS
+         */
+        function loadPolicePhones(stationId) {
+
+            var $phone = $("#ddlPolicePhone");
+
+            $phone.prop("disabled", true);
+            $("#policePhoneLoader").show();
+            $("#btnContinue").prop("disabled", true);
+
+            $.ajax({
+                url: urls.policePhones,
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: {
+                    StationId: stationId
+                },
+                success: function (response) {
+
+                    $phone.empty().append(
+                        $("<option/>", {
+                            value: "",
+                            text: "Select Police Mobile Number"
+                        })
+                    );
+
+                    if (response && response.length > 0) {
+
+                        $.each(response, function (index, item) {
+
+                            /*
+                             * Post the actual phone number.
+                             * Display the masked value returned by API.
+                             */
+                            $phone.append(
+                                $("<option/>", {
+                                    value: item.phoneNumber,
+                                    text: item.phoneNumberMask ||
+                                          item.phoneNumber
+                                })
+                            );
+                        });
+
+                        $phone.prop("disabled", false);
+
+                    } else {
+
+                        showMessage(
+                            "No police mobile numbers are configured for the selected station.",
+                            "warning"
+                        );
+                    }
+
+                    $phone.val(null).trigger("change.select2");
+                    $("#policePhoneLoader").hide();
+                },
+                error: function () {
+
+                    $("#policePhoneLoader").hide();
+
+                    showMessage(
+                        "Unable to load police mobile numbers. Please try again.",
+                        "error"
+                    );
+                }
+            });
+        }
+
+        /*
+         * POLICE PHONE CHANGE
+         */
+        $("#ddlPolicePhone").on("change", function () {
+
+            var phoneNumber = $(this).val();
+
+            var phonenName =
+                $("#ddlPolicePhone option:selected").text();
+            $("#hdnPolicePhone").val(phonenName);
+
+            $("#btnContinue").prop(
+                "disabled",
+                !phoneNumber
+            );
+        });
+
+        /*
+         * CONTINUE VALIDATION
+         */
+        $("#formControl").on("submit", function (event) {
+
+            var isTrafficFine =
+                $("#hdnIsTrafficFine").val() === "1";
+
+            if (isTrafficFine) {
+
+                if (!$("#ddlPoliceStation").val()) {
+
+                    event.preventDefault();
+
+                    showMessage(
+                        "Please select a police station.",
+                        "warning"
+                    );
+
+                    $("#ddlPoliceStation").select2("open");
+                    return false;
+                }
+
+                if (!$("#ddlPolicePhone").val()) {
+
+                    event.preventDefault();
+
+                    showMessage(
+                        "Please select a police mobile number.",
+                        "warning"
+                    );
+
+                    $("#ddlPolicePhone").select2("open");
+                    return false;
+                }
+
+            } else {
+
+                if (!$("#ddlOrganization").val()) {
+
+                    event.preventDefault();
+
+                    showMessage(
+                        "Please select an organization.",
+                        "warning"
+                    );
+
+                    $("#ddlOrganization").select2("open");
+                    return false;
+                }
+
+                if (!$("#ddlService").val()) {
+
+                    event.preventDefault();
+
+                    showMessage(
+                        "Please select a service.",
+                        "warning"
+                    );
+
+                    $("#ddlService").select2("open");
+                    return false;
+                }
+            }
+
+            $("#btnContinue")
+                .prop("disabled", true)
+                .text("Processing...");
+
+            $("#ajaxLoader .loader-text")
+                .text("Redirecting to payment portal...");
+
+            $("#ajaxLoader").css("display", "flex");
+        });
+
+        /*
+         * CANCEL
+         */
+        $("#btnCancel").on("click", function () {
+
+            resetCompletePage();
+
+            $(".service-card").removeClass("active");
+
+            $("html, body").animate({
+                scrollTop: $(".services-section").offset().top - 30
+            }, 300);
+        });
+
+        function resetCompletePage() {
+
+            $("#hdnSectorId").val("0");
+            $("#hdnServiceId").val("");
+            $("#hdnServiceDescription").val("");
+            $("#hdnIsTrafficFine").val("0");
+            $("#hdnPoliceStationName").val("");
+            $("#hdnPolicePhone").val("");
+
+            clearOrganization();
+            clearService();
+            clearPoliceStation();
+            clearPolicePhone();
+
+            switchToNormalFlow();
+
+            $("#btnContinue")
+                .prop("disabled", true)
+                .text("Continue");
+
+            hideMessage();
+        }
+
+        function clearOrganization() {
+
+            $("#hdnPoliceStationName").val("");
+            $("#hdnPolicePhone").val("");
+
+            $("#ddlOrganization")
+                .empty()
+                .append(
+                    $("<option/>", {
+                        value: "",
+                        text: "Select Organization"
+                    })
+                )
+                .val(null)
+                .trigger("change.select2");
+        }
+
+        function clearService() {
+
+            $("#hdnPoliceStationName").val("");
+            $("#hdnPolicePhone").val("");
+
+            $("#ddlService")
+                .empty()
+                .append(
+                    $("<option/>", {
+                        value: "",
+                        text: "Select Service"
+                    })
+                )
+                .prop("disabled", true)
+                .val(null)
+                .trigger("change.select2");
+
+            $("#hdnServiceId").val("");
+            $("#hdnServiceDescription").val("");
+        }
+
+        function clearPoliceStation() {
+
+            $("#hdnPoliceStationName").val("");
+            $("#hdnPolicePhone").val("");
+
+            $("#ddlPoliceStation")
+                .empty()
+                .append(
+                    $("<option/>", {
+                        value: "",
+                        text: "Select Police Station"
+                    })
+                )
+                .val(null)
+                .trigger("change.select2");
+        }
+
+        function clearPolicePhone() {
+
+            $("#hdnPolicePhone").val("");
+
+            $("#ddlPolicePhone")
+                .empty()
+                .append(
+                    $("<option/>", {
+                        value: "",
+                        text: "Select Police Mobile Number"
+                    })
+                )
+                .prop("disabled", true)
+                .val(null)
+                .trigger("change.select2");
+        }
+
+        function scrollToPaymentSelection() {
+
+            var $section = $("#paymentSelectionSection");
+
+            if ($section.length === 0) {
+                return;
+            }
+
+            $("html, body").animate({
+                scrollTop: $section.offset().top - 80
+            }, 300);
+        }
+
+        function showMessage(message, type) {
+
+            $("#selectionMessage")
+                .removeClass(
+                    "message-error message-warning message-success"
+                )
+                .addClass("message-" + type)
+                .text(message)
+                .stop(true, true)
+                .fadeIn(150);
+        }
+
+        function hideMessage() {
+
+            $("#selectionMessage")
+                .stop(true, true)
+                .hide()
+                .text("");
+        }
+    });
+    </script>
+
+
+    <footer class="govpay-footer">
+
+        <div class="footer-logos">
+
+            <img src="assets/foot_logo.png" width="10%" alt="">
+
+        </div>
+
+        <div class="footer-copyright">
+
+            © 2026 Government Digital Payment Platform.
+            All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+</body></html>
